@@ -5,6 +5,8 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../model/model');
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 
 // Adding a passport middleware to handle user registration
@@ -53,6 +55,22 @@ passport.use(
                 return done(null, user, { message: 'Logged in Successfully' });
             } catch (error) {
                 return done(error);
+            }
+        }
+    )
+);
+// Verifying the JWT
+
+passport.use(
+    new JWTstrategy({
+            secretOrKey: 'TOP_SECRET',
+            jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+        },
+        async(token, done) => {
+            try {
+                return done(null, token.user);
+            } catch (error) {
+                done(error);
             }
         }
     )
