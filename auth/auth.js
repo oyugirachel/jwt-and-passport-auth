@@ -28,7 +28,7 @@ passport.use(
 );
 
 
-//Passport middleware to handle login
+//Passport middleware to handle user login
 
 passport.use(
     'login',
