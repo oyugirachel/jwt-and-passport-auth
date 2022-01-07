@@ -82,3 +82,35 @@ Output
     "token": "[a long string of characters representing a token]"
 }
 ```
+
+Now that you have your token, you will send over this token whenever you want to access a secure route. Copy and paste it for later use.
+
+You can test how your application handles verifying tokens by accessing ```/user/profile```.
+
+In Postman, set up the request to the profile endpoint you created in ```secure-routes.js```:
+
+```
+GET localhost:3000/user/profile
+Params
+```
+And pass your token in a query parameter called ```secret_token```:
+[![Screenshot-from-2022-01-07-12-01-42.png](https://i.postimg.cc/gcNrjXBr/Screenshot-from-2022-01-07-12-01-42.png)](https://postimg.cc/c6td5HWN)
+
+When that’s done, click the Send button to initiate the ```GET``` request:
+```
+{
+    "message": "You made it to the secure route",
+    "user": {
+        "_id": "[a long string of characters representing a unique id]",
+        "email": "example@example.com"
+    },
+    "token": "[a long string of characters representing a token]"
+}
+```
+The token will be collected and verified. If the token is valid, you’ll be given access to the secure route. This is a result of the response you created in ```secure-routes.js```.
+You can also try accessing this route, but with an invalid token, the request will return an ```Unauthorized``` error.
+
+### Conclusion ###
+ Now you've set up API authentication with JWT and tested it with Postman
+ JSON web tokens provide a secure way of creating authentication for APIs. An extra layer of security can be added by encrypting all the information within the token, thereby making it even more secure.
+
