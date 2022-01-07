@@ -35,19 +35,20 @@ You can use Postman to test your API authentication.
 
 First, you will have to register a new user in your application with an email and password.
 
-In Postman, set up the request to the <strong>signup<strong> endpoint you created in <strong>routes.js<strong>:
+In Postman, set up the request to the <strong>signup</strong> endpoint you created in <strong>routes.js</strong>:
 
 ```
 POST localhost:3000/signup
 Body
 x-www-form-urlencoded
 ```
-And send over these details through the <strong>Body<strong> of your request:
+And send over these details through the <strong>Body</strong> of your request:
 [![Screenshot-from-2022-01-07-11-30-14.png](https://i.postimg.cc/TwwRzQqx/Screenshot-from-2022-01-07-11-30-14.png)](https://postimg.cc/yJM49mbp)
 
-When that’s done, click the Send button to initiate the <strong>POST<strong> request:
+When that’s done, click the Send button to initiate the <strong>POST</strong> request:
 ```
-Output{
+Output
+{
     "message": "Signup successful",
     "user": {
         "_id": "[a long string of characters representing a unique id]",
@@ -55,5 +56,29 @@ Output{
         "password": "[a long string of characters representing an encrypted password]",
         "__v": 0
     }
+}
+```
+
+Your password displays as an encrypted string because this is how it is stored in the database. This is a result of the pre-hook you wrote in ```model.js``` to use bcrypt to hash the password.
+
+Now, log in with the credentials and get your token.
+
+In Postman, set up the request to the login endpoint you created in ```routes.js```:
+```
+POST localhost:3000/login
+Body
+x-www-form-urlencoded
+```
+And send over these details through the Body of your request:
+
+[![Screenshot-from-2022-01-07-11-30-14.png](https://i.postimg.cc/TwwRzQqx/Screenshot-from-2022-01-07-11-30-14.png)](https://postimg.cc/yJM49mbp)
+
+When that’s done, click the <strong>Send</strong> button to initiate the POST request
+
+```
+Output
+
+{
+    "token": "[a long string of characters representing a token]"
 }
 ```
