@@ -23,9 +23,37 @@ cd jwt-and-passport-auth
 npm install
 ```
 
-**4.**  The app gets up and running on port 8082 with 
+**4.**  The app gets up and running on port 3000 with 
 ```
 npm start
 ```
 *** You will need bcrypt for hashing user passwords, jsonwebtoken for signing tokens, passport-local for implementing local strategy, and passport-jwt for retrieving and verifying JWTs. ***
 
+
+### Step 2 — Testing with Postman ###
+You can use Postman to test your API authentication.
+
+First, you will have to register a new user in your application with an email and password.
+
+In Postman, set up the request to the <strong>signup<strong> endpoint you created in <strong>routes.js<strong>:
+
+```
+POST localhost:3000/signup
+Body
+x-www-form-urlencoded
+```
+And send over these details through the <strong>Body<strong> of your request:
+[![Screenshot-from-2022-01-07-11-30-14.png](https://i.postimg.cc/TwwRzQqx/Screenshot-from-2022-01-07-11-30-14.png)](https://postimg.cc/yJM49mbp)
+
+When that’s done, click the Send button to initiate the <strong>POST<strong> request:
+```
+Output{
+    "message": "Signup successful",
+    "user": {
+        "_id": "[a long string of characters representing a unique id]",
+        "email": "example@example.com",
+        "password": "[a long string of characters representing an encrypted password]",
+        "__v": 0
+    }
+}
+```
